@@ -11,4 +11,4 @@ struct Board {
     std::vector<Shelter> shelter_list;
 };
 
-void draw_board(Board board, p6::Context& ctx);
+void draw_board(Board board);
