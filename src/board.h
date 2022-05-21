@@ -1,5 +1,6 @@
-#include <p6/p6.h>
+#include <algorithm>
 #include <iostream>
+#include "game.h"
 
 struct Shelter {
     int x;
@@ -7,7 +8,8 @@ struct Shelter {
 };
 
 struct Board {
-    int                  size = 9;
+    int                  width;
+    int                  height;
     std::vector<Shelter> shelter_list;
 };
 
