@@ -1,18 +1,19 @@
+#pragma once
+
+#include <stdlib.h>
+#include <algorithm>
+#include <iostream>
 #include <string>
 #include <vector>
-
-inline int letter_to_int(char x)
-{
-    return int(x) - 96;
-}
+#include "galinette.h"
 
 struct Shelter {
     int x;
     int y;
 
     std::string info;
-    bool        hunter;
-    bool        squirrel;
+    bool        hunter   = false;
+    bool        squirrel = false;
 };
 
 struct Board {
@@ -25,8 +26,8 @@ struct Board {
 struct Hunter {
     std::string name;
 
-    int  rank;
-    bool has_won;
+    int  rank    = 0;
+    bool has_won = false;
 };
 
 struct Galinette {
@@ -36,8 +37,11 @@ struct Galinette {
 };
 
 struct Game {
-    int                 nb_shelter;
+    int                 nb_shelter = 10;
     Board               board;
     std::vector<Hunter> player;
-    bool                is_finished;
+    bool                is_finished = false;
 };
+
+Game add_player(Game game);
+Game add_shelter(Game game);

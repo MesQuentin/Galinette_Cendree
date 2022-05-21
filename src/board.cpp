@@ -14,6 +14,7 @@ void draw_lines(Board board, int line)
     for (int column = 0; column < board.width; column++) {
         if (std::any_of(board.shelter_list.begin(), board.shelter_list.end(), [line, column](Shelter shelter) { return shelter.x == column + 1 && shelter.y == line + 1; })) {
             std::cout << "| ";
+
             draw_multiple(3, char(WHITE_SQUARE));
             std::cout << " ";
         }
@@ -34,9 +35,9 @@ void draw_board(Board board)
     }
     std::cout << std::endl
               << std::endl;
-
     draw_multiple(6 * board.width + 1, '-');
     std::cout << std::endl;
+
     for (int line = 0; line < board.height; line++) {
         draw_lines(board, line);
     }

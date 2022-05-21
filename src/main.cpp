@@ -1,40 +1,24 @@
 #include "board.h"
-
-void show_info()
-{
-    std::cout << std::endl;
-    std::cout << " GALINETTE CENDREE" << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-}
-
-void start()
-{
-    std::cout << std::endl;
-    std::cout << " Bienvenue" << std::endl;
-    std::cout << std::endl;
-}
-
-void end()
-{
-    std::cout << std::endl;
-    std::cout << " Youhou" << std::endl;
-    std::cout << std::endl;
-}
+#include "interface.h"
 
 int main()
 {
-    start();
+    srand(time(NULL));
+    show_start();
 
-    Game game = {10, {10, 7, {{2, 3}, {1, 2}}}, {}, false};
+    Game game = {17, {10, 7, {{1, 3}}}, {}, false};
 
-    while (!game.is_finished) {
-        show_info();
-        draw_board(game.board);
-        std::cout << std::endl
-                  << std::endl;
-    }
+    game = add_shelter(game);
+    game = add_player(game);
 
-    end();
+    // while (!game.is_finished) {
+    std::cout << game.player[0].name;
+    show_info(game.player[0]);
+    draw_board(game.board);
+    std::cout << std::endl
+              << std::endl;
+    // }
+
+    // show_end();
     return 0;
 }

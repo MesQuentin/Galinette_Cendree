@@ -1,5 +1,5 @@
-#include <algorithm>
-#include <iostream>
+#pragma once
+
 #include "game.h"
 
 void draw_board(Board board);
