@@ -9,11 +9,6 @@ void draw_multiple(int n, T c)
     }
 }
 
-int letter_to_int(char x)
-{
-    return int(x) - 96;
-}
-
 void draw_lines(Board board, int line)
 {
     for (int column = 0; column < board.width; column++) {
