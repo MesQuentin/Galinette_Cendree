@@ -5,16 +5,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "galinette.h"
 #include "random.h"
 
 struct Shelter {
     int x;
     int y;
 
-    std::string info     = "";
-    bool        hunter   = false;
-    bool        squirrel = false;
+    std::string info      = "";
+    bool        hunter    = false;
+    bool        squirrel  = false;
+    bool        galinette = false;
 };
 
 struct Board {
