@@ -1,0 +1,3 @@
+#include <random>
+
+bool bernouilli(float p);

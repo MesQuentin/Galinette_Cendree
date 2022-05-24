@@ -6,12 +6,13 @@
 #include <string>
 #include <vector>
 #include "galinette.h"
+#include "random.h"
 
 struct Shelter {
     int x;
     int y;
 
-    std::string info;
+    std::string info     = "";
     bool        hunter   = false;
     bool        squirrel = false;
 };
@@ -25,9 +26,6 @@ struct Board {
 
 struct Hunter {
     std::string name;
-
-    int  rank    = 0;
-    bool has_won = false;
 };
 
 struct Galinette {
@@ -43,5 +41,14 @@ struct Game {
     bool                is_finished = false;
 };
 
+// Initialisation
 Game add_player(Game game);
 Game add_shelter(Game game);
+int  decide_order();
+
+// Turn
+std::vector<Shelter> destroy_shelter(std::vector<Shelter> shelter_list, std::vector<int> entry);
+
+// Verification constant
+bool is_game_finished(int nb_turn);
+int  go_to_next_turn(int turn);

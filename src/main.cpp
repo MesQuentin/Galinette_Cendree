@@ -3,22 +3,33 @@
 
 int main()
 {
+    // Initialisation
     srand(time(NULL));
+    Game game = {17, {10, 7, {}}, {}, false};
+
+    // First draw : who goes first
     show_start();
+    game            = add_player(game);
+    int player_turn = decide_order();
 
-    Game game = {17, {10, 7, {{1, 3}}}, {}, false};
-
+    // Add random shelter on the board
     game = add_shelter(game);
-    game = add_player(game);
 
-    // while (!game.is_finished) {
-    std::cout << game.player[0].name;
-    show_info(game.player[0]);
-    draw_board(game.board);
-    std::cout << std::endl
-              << std::endl;
-    // }
+    int nb_turn = 2;
 
-    // show_end();
+    while (!game.is_finished) {
+        show_info(game.player[player_turn]);
+        draw_board(game.board);
+        game.board = turn_position(game.board);
+
+        std::cout << std::endl
+                  << std::endl;
+
+        player_turn      = go_to_next_turn(player_turn);
+        game.is_finished = is_game_finished(nb_turn);
+        nb_turn--;
+    }
+
+    show_end();
     return 0;
 }

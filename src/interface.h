@@ -10,21 +10,16 @@ T get_input_from_user()
     T choice;
     while (!(std::cin >> choice)) {
         std::cin.clear();
-        std::cout << "*This ... is not really what was asked of you." << std::endl;
-        std::cout << "The old man waits for your next answer with hope (Invalid Input)*\n\n";
+        std::cout << "*Ce n'est pas vraiment ce qu'on vous a demandé." << std::endl;
+        std::cout << "Invalid Input*\n\n";
         break;
     }
 
     return choice;
 }
 
-inline int letter_to_int(char x)
-{
-    return int(x) - 96;
-};
-
-void show_info(Hunter hunter);
-void show_start();
-void show_end();
-void get_coord();
-void show_menu();
+void  show_info(Hunter hunter);
+void  show_start();
+void  show_end();
+Board turn_position(Board board);
+Board turn_action(Board board, std::vector<int> entry);

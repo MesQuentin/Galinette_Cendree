@@ -26,52 +26,70 @@ void show_end()
     std::cout << std::endl;
 }
 
-void get_coord()
+int letter_to_int(char x)
 {
-    std::cout << " Ou souhaitez-vous vous rendre ? (Taper les coordonnées comme ci-suit : A5) " << std::endl;
-    std::cout << " 1. Fouiller" << std::endl;
-    std::cout << " 2. Tirer" << std::endl
-              << std::endl;
-}
+    if (int(x) - 64 <= 0) {
+        return int(x) - 48;
+    }
+    return int(x) - 64;
+};
 
-void show_menu()
+Board turn_position(Board board)
 {
-    std::map<char, std::function> map{
-        {'1', {"guess_a_number", guess_a_number()}},
-        {'2', {"hangman", hangman()}},
-        ,
-    };
+    bool             quit = false;
+    std::vector<int> entry;
 
-    bool quit = false;
     while (!quit) {
-        command_list();
+        if (entry.empty()) {
+            std::cout << " Ou souhaitez-vous vous rendre ? (Taper les coordonnees comme ci-suit : A5) " << std::endl;
+            std::cout << std::endl;
+        }
+
         const auto choice = get_input_from_user<char>();
-        std::cout << std::endl;
-        switch (choice) {
-        case '1':
-            guess_a_number();
-            std::cout << std::endl;
-            break;
 
-        case '2':
-            hangman();
-            std::cout << std::endl;
-            break;
+        int int_choice = letter_to_int(choice);
 
-        case '3':
-            nought_and_crosses();
-            break;
+        entry.push_back(int_choice);
 
-        case '4':
-            Menudventure::start();
-            break;
-
-        case '5':
-            std::cout << "*The old man looks at you extremely sad as you close your eyes*" << std::endl;
-            std::cout << std::endl
-                      << "Good night, traveler" << std::endl
-                      << std::endl;
-            quit = true;
+        if (entry.size() == 2) {
+            if (std::any_of(board.shelter_list.begin(), board.shelter_list.end(), [entry](Shelter shelter) { return shelter.x == entry[0] && shelter.y == entry[1]; })) {
+                board = turn_action(board, entry);
+                quit  = true;
+            }
+            else {
+                std::cout << entry[0] << " " << entry[1] << std::endl;
+                entry = {};
+                std::cout << " Il n'y a pas de refuge a cet endroit " << std::endl
+                          << std::endl;
+            }
         }
     }
+
+    std::cout << std::endl;
+    return board;
+}
+
+Board turn_action(Board board, std::vector<int> entry)
+{
+    std::cout << " Que faire ? " << std::endl;
+    std::cout << " 1. Fouiller" << std::endl;
+    std::cout << " 2. Tirer" << std::endl;
+
+    const auto choice = get_input_from_user<char>();
+    std::cout << std::endl;
+
+    switch (choice) {
+    case '1':
+        std::cout << "Bim" << std::endl;
+        // get_info();
+        std::cout << std::endl;
+        break;
+
+    case '2':
+        board.shelter_list = destroy_shelter(board.shelter_list, entry);
+        std::cout << std::endl;
+
+        break;
+    }
+    return board;
 }
