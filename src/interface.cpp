@@ -1,14 +1,16 @@
 #include "interface.h"
 #include <map>
 
-void show_info(Hunter hunter)
+void show_info(Hunter hunter, bool past)
 {
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << " LE JEU DE LA GALINETTE CENDREE" << std::endl;
     std::cout << std::endl;
     std::cout << hunter.name << ", c'est a ton tour !" << std::endl;
-    // Rajouter une fonction pour associer le tour et le rang
+    if (!past) {
+        std::cout << " Un coup de feu a retenti ! " << std::endl;
+    }
     std::cout << std::endl;
 }
 
@@ -41,7 +43,7 @@ Board turn_position(Board board)
 
     while (!quit) {
         if (entry.empty()) {
-            std::cout << " Ou souhaitez-vous vous rendre ? (Taper les coordonnees comme ci-suit : A5) " << std::endl;
+            std::cout << " Ou souhaites-tu te rendre ? (Tape les coordonnees comme ci-suit : A5) " << std::endl;
             std::cout << std::endl;
         }
 

@@ -18,7 +18,7 @@ T get_input_from_user()
     return choice;
 }
 
-void  show_info(Hunter hunter);
+void  show_info(Hunter hunter, bool past);
 void  show_start();
 void  show_end();
 Board turn_position(Board board);
