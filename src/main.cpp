@@ -1,8 +1,12 @@
 #include "board.h"
-#include "interface.h"
+#include "interface.h"   
 
 int main()
 {
+ 
+ 
+ 
+ 
     // Initialisation
     srand(time(NULL));
     Game game = {17, {10, 7, {}}, {}, false};
